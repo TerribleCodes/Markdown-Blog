@@ -1,35 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const app = express();
-const dotenv = require("dotenv");
-
-dotenv.config();
-
-// Route Handling
+const Article = require("./models/article");
 const articleRouter = require("./routes/articles");
-app.use(express.urlencoded({ extended: false }));
-app.use("/articles", articleRouter);
+const methodOverride = require("method-override");
+const app = express();
 
-// ejs acts as the view engine
-app.set("view engine", "ejs");
-
-app.get("/", (req, res) => {
-  const articles = [
-    {
-      title: "Test Article",
-      createdAt: new Date(),
-      description: "Test Description",
-    },
-    {
-      title: "Test Article2",
-      createdAt: new Date(),
-      description: "Test Description2",
-    },
-  ];
-
-  // render method will automatically look into the views folder and therefore no need to set the path with `views`
-  res.render("articles/index", { articles: articles });
-});
+const dotenv = require("dotenv");
+dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL).then(
   () => {
@@ -38,3 +15,15 @@ mongoose.connect(process.env.MONGO_URL).then(
   },
   (err) => console.log(err)
 );
+
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
+
+app.get("/", async (req, res) => {
+  const article = await Article.find().sort({ createdAt: -1 });
+  // render method will automatically look into the views folder and therefore no need to set the path with `views`
+  res.render("articles/index", { articles: article });
+});
+
+app.use("/articles", articleRouter);
