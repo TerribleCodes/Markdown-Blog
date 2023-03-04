@@ -1,0 +1,2 @@
+- Script: `npm run devStart`
+- Store the Mongodb connection string in a .env file as `MONGO_URL`
