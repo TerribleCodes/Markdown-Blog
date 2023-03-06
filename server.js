@@ -10,7 +10,7 @@ dotenv.config();
 
 mongoose.connect(process.env.MONGO_URL).then(
   () => {
-    console.log("Listening on port 5000");
+    console.log(`Started the server at http://localhost:${process.env.PORT}`);
     app.listen(5000);
   },
   (err) => console.log(err)
