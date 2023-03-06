@@ -46,13 +46,13 @@ The folder structure of this app is explained below:
 
 | Name                        | Description                      |
 | --------------------------- | -------------------------------- |
-| **models/article**          | Contains the Schemas             |
-| **controller/node_modules** | Contains all npm dependencies    |
+| **models/article**          | Contain Schemas             |
+| **controller/node_modules** | Contain all npm dependencies    |
 | **routes/articles.js**      | Contain routes                   |
 | **views/articles**          | Contains the view                |
-| **.env**                    | Contains environmental variables |
-| **.gitignore**              | Contains untracking files        |
-| **package.json**            | Contains npm dependencies        |
+| **.env**                    | Contain environmental variables |
+| **.gitignore**              | Contain untracking files        |
+| **package.json**            | Contain npm dependencies        |
 | **server.js**               | Entry point to express app       |
 
 ## Building the project
